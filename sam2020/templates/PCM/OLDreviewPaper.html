@@ -1,0 +1,26 @@
+{% extends "baseTemplate.html" %}
+{% block sideNav %}
+<p id="open" style="font-size:30px;cursor:pointer; position:fixed;" onclick="openNav()">&#9776;</p>
+    <div class="sideNavContainer">
+        <div id="sideNavMenu">
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Clients</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+
+{% endblock sideNav %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm">
+      <embed src="{{ url_for('static', filename='papers/testing.pdf') }}" type="application/pdf" width="100%" height="700vw"/>
+    </div>
+    <div class="col-sm">
+         <embed src="{{ url_for('static', filename='papers/testing.pdf') }}" type="application/pdf" width="100%" height="700vw"/>
+    </div>
+</div>
+{% endblock content %}
+
+

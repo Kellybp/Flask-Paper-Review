@@ -1,0 +1,36 @@
+{% extends "baseTemplate.html" %}
+{% block sideNav %}
+    {% include 'Admin/adminSideNav.html' %}
+{% endblock sideNav %}
+{% block content %}
+    <h1>Submissions</h1>
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Review 1</th>
+            <th scope="col">Review 2</th>
+            <th scope="col">Review 3</th>
+            <th scope="col">Deadline</th>
+            <th scope="col">Paper</th>
+          </tr>
+        </thead>
+    <tbody>
+        {% for paper in list %}
+            <tr>
+                <th scope="row">{{ paper.title }}</th>
+                <td>{{ paper.rating_id }}</td>
+                <td>{{ paper.review1_id }}</td>
+                <td>{{ paper.review2_id }}</td>
+                <td>{{ paper.review3_id }}</td>
+                <td>deadline</td>
+                <td><a href="{{ paper.uri }}" download>
+                    <img src="{{ url_for('static', filename='images/pdf.png') }}" width="60" height="60">
+                </a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</table>
+{% endblock content %}

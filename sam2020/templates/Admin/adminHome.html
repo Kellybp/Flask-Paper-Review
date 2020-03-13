@@ -1,0 +1,43 @@
+{% extends "baseTemplate.html" %}
+{% block sideNav %}
+    {% include 'Admin/adminSideNav.html' %}
+{% endblock sideNav %}
+{% block content %}
+    <h1>User Accounts</h1>
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Select</th>
+            <th scope="col">Username</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Type</th>
+          </tr>
+        </thead>
+    <tbody>
+        {% for user in list %}
+            <tr>
+                <th scope="row"><button type="button" class="btn btn-info" ><a href="{{ url_for("updateUser", id=user.u_id) }}" style="color:white">Edit User</a></button></th>
+                <td>{{ user.username }}</td>
+                <td>{{ user.f_name }}</td>
+                <td>{{ user.l_name }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                {%  if user.u_type == 1  %}
+                    Admin
+                {%  elif user.u_type == 2  %}
+                    PCC
+                {%  elif user.u_type == 3  %}
+                    PCM?
+                {%  else  %}
+                    Author
+                {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+    </table>
+    <button type="button" class="btn btn-primary" ><a href="{{ url_for("newUser") }}" style="color:white">Add User</a></button>
+{% endblock content %}

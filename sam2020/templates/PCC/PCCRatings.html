@@ -1,0 +1,34 @@
+{% extends "baseTemplate.html" %}
+{% block sideNav %}
+    {% include 'PCC/PCCSideNav.html' %}
+{% endblock sideNav %}
+{% block content %}
+    <h1>My Ratings</h1>
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Select</th>
+            <th scope="col">Paper Name</th>
+            <th scope="col">Reviewer 1</th>
+            <th scope="col">Reviewer 2</th>
+            <th scope="col">Reviewer 3</th>
+            <th scope="col">Score</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+    <tbody>
+        {% for rating in list %}
+            <tr>
+                <th scope="row"><button type="button" class="btn btn-info" ><a href="{{ url_for("updaterating", id=rating[1].rating_id) }}" style="color:white">Edit</a></button></th>
+                <td>{{ rating[0] }}</td>
+                <td>{{ rating[1].review1_id }}</td>
+                <td>{{ rating[1].review2_id }}</td>
+                <td>{{ rating[1].review3_id }}</td>
+                <td>{{ rating[1].score }}</td>
+                <td>{{ rating[1].submission_timestamp }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</table>
+{% endblock content %}

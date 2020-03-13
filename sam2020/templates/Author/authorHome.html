@@ -1,0 +1,70 @@
+{% extends "baseTemplate.html" %}
+{% block sideNav %}
+    {% include 'Author/authorSideNav.html' %}
+{% endblock sideNav %}
+{% block content %}
+    <h1>My Papers</h1>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Select</th>
+            <th scope="col">Title</th>
+            <th scope="col">Authors</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Review 1</th>
+            <th scope="col">Review 2</th>
+            <th scope="col">Review 3</th>
+            <th scope="col">Paper</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for paper in list %}
+            <tr>
+                <th scope="row">
+                    <button type="button" class="btn btn-info"><a href="{{ url_for("updatePaper", id=paper.p_id) }}"
+                                                                  style="color:white">Edit</a></button>
+                </th>
+                <td>{{ paper.title }}</td>
+                <td>{{ paper.other_authors }}</td>
+                {% if  paper.rating_id != None %}
+                    <td><a href="rating/{{ paper.rating_id }}">
+                        <img src="{{ url_for('static', filename='images/pdf.png') }}" width="60" height="60">
+                    </a></td>
+                {% else %}
+                    <td>Not Finished</td>
+                {% endif %}
+                {% if paper.review1_id != None %}
+                    <td><a href="paperReview/{{ paper.review1_id }}">
+                        <img src="{{ url_for('static', filename='images/pdf.png') }}" width="60" height="60">
+                    </a></td>
+                {% else %}
+                    <td>Not Finished</td>
+                {% endif %}
+
+                {% if paper.review2_id != None %}
+                    <td><a href="paperReview/{{ paper.review1_id }}">
+                        <img src="{{ url_for('static', filename='images/pdf.png') }}" width="60" height="60">
+                    </a></td>
+                {% else %}
+                    <td>Not Finished</td>
+                {% endif %}
+
+                {% if paper.review3_id != None %}
+                    <td><a href="paperReview/{{ paper.review1_id }}">
+                        <img src="{{ url_for('static', filename='images/pdf.png') }}" width="60" height="60">
+                    </a></td>
+                {% else %}
+                    <td>Not Finished</td>
+                {% endif %}
+
+                <td><a href="return-files?filePath={{ paper.uri }}">
+                    <img src="{{ url_for('static', filename='images/pdf.png') }}" width="60" height="60">
+                </a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </table>
+    <button type="button" class="btn btn-primary"><a href="{{ url_for("submitPaper") }}" style="color:white">Submit new
+        paper</a></button>
+{% endblock content %}

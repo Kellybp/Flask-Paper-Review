@@ -1,0 +1,24 @@
+{% extends "baseTemplate.html" %}
+{% block sideNav %}
+    {% include 'Author/authorSideNav.html' %}
+{% endblock sideNav %}
+{% block content %}
+    <h1>Deadlines</h1>
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Deadline</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+    <tbody>
+        {% for deadline in list %}
+            <tr>
+                <th scope="row">{{ deadline.name }}</th>
+                <td>{{ deadline.deadline_date }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</table>
+{% endblock content %}

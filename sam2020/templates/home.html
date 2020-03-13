@@ -1,0 +1,51 @@
+{% extends "baseTemplate.html" %}
+
+{% block sideNav %}
+<p id="open" style="font-size:30px;cursor:pointer; position:fixed;" onclick="openNav()">&#9776;</p>
+<div class="sideNavContainer">
+    <div id="sideNavMenu">
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </div>
+</div>
+{% endblock sideNav %}
+
+{% block content %}
+    <h1>My Papers</h1>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Authors</th>
+        <th scope="col">Submission Date</th>
+        <th scope="col">Paper</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
+</table>
+
+{% endblock content %}
+
+

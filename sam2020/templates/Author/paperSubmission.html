@@ -1,0 +1,62 @@
+{% extends 'baseTemplate.html' %}
+{% block sideNav %}
+    {% include 'Author/authorSideNav.html' %}
+{% endblock sideNav %}
+{% block content %}
+    <h1>Paper submission</h1>
+
+    <!--Error Message-->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <!--End Error Message-->
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.title.label(class="form-control-label") }}
+            {% if form.title.errors %}
+                {{ form.title(class="form-control is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.title.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.title(class="form-control") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.other_authors.label(class="form-control-label") }}
+            {% if form.other_authors.errors %}
+                {{ form.other_authors(class="form-control is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.other_authors.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.other_authors(class="form-control") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.file.label(class="form-control-label") }}
+            {% if form.file.errors %}
+                {{ form.file(class="form-control is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.file.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.file(class="form-control") }}
+            {% endif %}
+        </div>
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+{% endblock content %}

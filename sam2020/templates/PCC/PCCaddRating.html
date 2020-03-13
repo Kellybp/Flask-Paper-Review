@@ -1,0 +1,46 @@
+{% extends "baseTemplate.html" %}
+{% block sideNav %}
+    {% include 'PCC/PCCSideNav.html' %}
+{% endblock sideNav %}
+{% block content %}
+    <h1>Create Rating</h1>
+    <form method="POST">
+    {{ form.id }}
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Review 1</th>
+            <th scope="col">Review 2</th>
+            <th scope="col">Review 3</th>
+            <th scope="col">Score</th>
+          </tr>
+        </thead>
+    <tbody>
+        <tr>
+        {% for review in list %}
+            {% if review.review_text %}
+                <td>{{ review.review_text }}</td>
+            {% else %}
+                <td>No review in yet</td>
+            {% endif %}
+        {% endfor %}
+            <td><div class="form-group">
+          {{ form.score.label(class="form-control-label") }}
+          {% if form.score.errors %}
+            {{ form.score(class="form-control is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.score.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+          {% else %}
+             {{ form.score(class="form-control") }}
+          {% endif %}
+        </div></td>
+        </tr>
+    </tbody>
+  </table>
+</table>
+    {{ form.submit(class="btn btn-primary") }}
+    </form>
+{% endblock content %}

@@ -1,0 +1,103 @@
+{% extends "baseTemplate.html" %}
+{% block sideNav %}
+    {% include 'PCC/PCCSideNav.html' %}
+{% endblock sideNav %}
+{% block content %}
+    <h1>Papers that need Reviewers</h1>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Select</th>
+            <th scope="col">Title</th>
+            <th scope="col">Review 1</th>
+            <th scope="col">Review 2</th>
+            <th scope="col">Review 3</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for paper in list %}
+            <tr>
+                <th scope="row">
+                    <button type="button" class="btn btn-primary"><a href="{{ url_for("setReviewer", id=paper.p_id) }}"
+                                                                     style="color:white">Set Reviewer</a></button>
+                </th>
+                <td>{{ paper.title }}</td>
+                {% if paper.assigned_pcm_ids %}
+                    {% for assignment in paper.assigned_pcm_ids.split(",") %}
+                        {% if assignment != "" %}
+                            <td>{{ assignment }}</td>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <td>Not Assigned</td>
+                    <td>Not Assigned</td>
+                    <td>Not Assigned</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h1>Papers that need Rating</h1>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Select</th>
+            <th scope="col">Title</th>
+            <th scope="col">Review 1</th>
+            <th scope="col">Review 2</th>
+            <th scope="col">Review 3</th>
+            <th scope="col">Deadline</th>
+            <th scope="col">Paper</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for paper in list2 %}
+            <tr>
+                <th scope="row">
+                    <button type="button" class="btn btn-primary"><a href="{{ url_for("addRating", id=paper.p_id) }}"
+                                                                     style="color:white">Add Rating</a></button>
+                </th>
+                <td>{{ paper.title }}</td>
+                {% if paper.review1_id != None %}
+                    <td>
+                        <a href="review/{{ paper.review1_id }}">
+                            <img src="{{ url_for('static', filename='images/pdf.png') }}" width="60" height="60">
+                        </a>
+                    </td>
+                {% else %}
+                    <td>Not Finished</td>
+                {% endif %}
+
+                {% if paper.review2_id != None %}
+                    <td>
+                        <a href="review/{{ paper.review2_id }}">
+                            <img src="{{ url_for('static', filename='images/pdf.png') }}" width="60" height="60">
+                        </a></td>
+                {% else %}
+                    <td>Not Finished</td>
+                {% endif %}
+
+                {% if paper.review3_id != None %}
+                    <td>
+                        <a href="review/{{ paper.review3_id }}">
+                            <img src="{{ url_for('static', filename='images/pdf.png') }}" width="60" height="60">
+                        </a>
+                    </td>
+                {% else %}
+                    <td>Not Finished</td>
+                {% endif %}
+                <td>deadline</td>
+                {% if paper.uri != None %}
+                    <td><a href="{{ paper.uri }}" download>
+                        <img src="{{ url_for('static', filename='images/pdf.png') }}" width="60" height="60">
+                    </a></td>
+                {% else %}
+                    <td>Not Finished</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </table>
+{% endblock content %}

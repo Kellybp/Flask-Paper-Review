@@ -1,0 +1,25 @@
+{% extends "baseTemplate.html" %}
+{% block sideNav %}
+    {% include 'PCC/PCCSideNav.html' %}
+{% endblock sideNav %}
+{% block content %}
+    <h1>Set Reviewer</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.id }}
+        <div class="form-group">
+          {{ form.reviewer.label(class="form-control-label") }}
+          {% if form.reviewer.errors %}
+            {{ form.reviewer(class="form-control is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.reviewer.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+          {% else %}
+             {{ form.reviewer(class="form-control") }}
+          {% endif %}
+        </div>
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+{% endblock content %}

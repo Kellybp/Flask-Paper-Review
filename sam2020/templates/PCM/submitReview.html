@@ -1,0 +1,66 @@
+{% extends 'baseTemplate.html' %}
+{% block content %}
+    <h1>Review submission</h1>
+
+    <!--Error Message-->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <!--End Error Message-->
+    <form action="http://localhost:5000/submitPaper" method="POST"
+          enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            {% if form.pa.data %}
+                {{ form.paperId.label(class="form-control-label") }}
+                {{ form.paperId(class="form-control",readonly=true) }}
+            {% endif %}
+        </div>
+
+     <div class="form-group">
+            {% if form.last_updated_on.data %}
+                {{ form.last_updated_on.label(class="form-control-label") }}
+                {{ form.last_updated_on(class="form-control",readonly=true) }}
+            {% endif %}
+        </div>
+
+
+        <div class="form-group">
+            {{ form.title.label(class="form-control-label") }}
+            {% if form.title.errors %}
+                {{ form.title(class="form-control is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.title.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.title(class="form-control") }}
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.other_authors.label(class="form-control-label") }}
+            {% if form.other_authors.errors %}
+                {{ form.other_authors(class="form-control is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.other_authors.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.other_authors(class="form-control") }}
+            {% endif %}
+        </div>
+
+        <input type="file" name="file"/>
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+{% endblock content %}

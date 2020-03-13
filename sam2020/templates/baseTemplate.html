@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/icon.png') }}">
+
+    {% if title %}
+      <title>SAM2020 - {{ title }}</title>
+    {% else %}
+      <title>SAM2020</title>
+    {% endif %}
+  </head>
+  <body>
+  <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="{{ url_for('home') }}">SAM2020</a>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+
+                <button class="w3-button w3-xxlarge" onclick="user_open()">
+                    <img alt="Icon made by Smashicons from www.flaticon.com" src="{{ url_for('static', filename='images/user.png') }}" >
+                </button>
+
+                <!--User Side Bar-->
+                <div class="userNav" style="display:none;z-index:4" id="userSide">
+                    <div class="col" id="sideImg">
+                        <img alt="Icon made by Smashicons from www.flaticon.com" src="{{ url_for('static', filename='images/user.png') }}" >
+                    </div>
+                    <a href="{{ url_for('account') }}">Account</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+                <div class="overlay opacity" onclick="user_close()" style="cursor:pointer" id="userOverlay"></div>
+                <!--End User Side Bar-->
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+  <div class="sideNav" id="sideNav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+     <!--<div class="content-section">-->
+       {% block sideNav %}
+       {% endblock %}
+      <!--</div>-->
+  </div>
+
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <main role="main" id="main">
+      <div class="row">
+        <div class="col-sm-12">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                  {% for category, message in messages %}
+                      <div class="alert alert-{{ category }}">
+                          {{ message }}
+                      </div>
+                  {% endfor %}
+              {% endif %}
+            {% endwith %}
+          {% block content %}
+
+          {% endblock %}
+        </div>
+      </div>
+    </main>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

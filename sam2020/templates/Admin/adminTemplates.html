@@ -1,0 +1,26 @@
+{% extends "baseTemplate.html" %}
+{% block sideNav %}
+    {% include 'Admin/adminSideNav.html' %}
+{% endblock sideNav %}
+{% block content %}
+    <h1>Templates</h1>
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Select</th>
+            <th scope="col">Name</th>
+            <th scope="col">URI</th>
+          </tr>
+        </thead>
+    <tbody>
+        {% for template in list %}
+            <tr>
+                <th scope="row">chk</th>
+                <td>Name-to be added</td>
+                <td>{{ template.uri }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</table>
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends "baseTemplate.html" %}
+{% block sideNav %}
+    {% include 'PCM/PCMSideNav.html' %}
+{% endblock sideNav %}
+{% block content %}
+    <h1>Available Papers</h1>
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Select</th>
+            <th scope="col">Title</th>
+          </tr>
+        </thead>
+    <tbody>
+        {% for paper in list %}
+            <tr>
+                <th scope="row"><button type="button" class="btn btn-info" >
+                    <a href="{{ url_for("addInterest", id=paper.p_id) }}" style="color:white">I am Interested
+{#                         {% if paperInterest %}#}
+{#                            {% if paper.interested_pcm_ids.find(paperInterest) >= 0 %}#}
+{#                                disabled#}
+{#                            {% endif %}#}
+{#                        {% endif %}#}
+                    </a>
+                </button></th>
+                <td>{{ paper.title }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</table>
+{% endblock content %}

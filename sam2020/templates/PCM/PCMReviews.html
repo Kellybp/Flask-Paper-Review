@@ -1,0 +1,56 @@
+{% extends "baseTemplate.html" %}
+{% block sideNav %}
+    {% include 'PCM/PCMSideNav.html' %}
+{% endblock sideNav %}
+{% block content %}
+    <h1>My Reviews</h1>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Select</th>
+            <th scope="col">Paper Title</th>
+            <th scope="col">Paper</th>
+            <th scope="col">Review_text</th>
+            <th scope="col">Times Submitted</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for review in list %}
+            <tr>
+                <th scope="row">
+                    <button type="button" class="btn btn-info"><a
+                            href="{{ url_for("updateReview", id=review[1].review_id) }}" style="color:white">Edit</a>
+                    </button>
+                </th>
+                <td>{{ review[0].title }}</td>
+                <td><a href="return-files?filePath={{ review[0].uri }}">
+                    <img src="{{ url_for('static', filename='images/pdf.png') }}" width="60" height="60">
+                </a></td>
+                {#                                <td>{{ review[1].review_text }}</td>#}
+                <td>
+                    <a href="review/{{ review[1].review_id }}">
+                        <img src="{{ url_for('static', filename='images/pdf.png') }}" width="60" height="60">
+                    </a>
+                </td>
+                <td>{{ review[1].times_submitted }}</td>
+
+                {#                <td>Paper Title</td>#}
+                {#                <td>Paper</td>#}
+                {#                <td>{{ review.review_text }}</td>#}
+                {#                <td>#}
+                {#                    <a href="review/{{ review.review_id }}">#}
+                {#                        <img src="{{ url_for('static', filename='images/pdf.png') }}" width="60" height="60">#}
+                {#                    </a>#}
+                {#                </td>#}
+                {#                <td>{{ review.times_submitted }}</td>#}
+                </a></td>
+
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </table>
+    <button type="button" class="btn btn-info"><a href="{{ url_for("reviewPaper") }}" style="color:white">Create
+        Review</a></button>
+{% endblock content %}

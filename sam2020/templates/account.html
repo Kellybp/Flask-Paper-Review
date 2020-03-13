@@ -1,0 +1,81 @@
+{% extends "baseTemplate.html" %}
+
+{% block sideNav %}
+ {% include sideNavLink %}
+{% endblock sideNav %}
+{% block content %}
+    <div class="media">
+        <img class="rounded-circle account-img"  alt="Icon made by Freepik from www.flaticon.com" src="{{ url_for('static', filename='images/user_black.png') }}">
+        <div class="media-body">
+            <h2 class="account-heading">{{ current_user.username }}<span id="userType"> -
+                {%  if current_user.u_type == 1  %}
+                    Admin
+                {%  elif current_user.u_type == 2  %}
+                    PCC
+                {%  elif current_user.u_type == 3  %}
+                    PCM
+                {%  else  %}
+                    Author
+                {% endif %}
+            </span></h2>
+            <p class="text-secondary">{{ current_user.email }}</p>
+        </div>
+    </div>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+          {{ form.username.label(class="form-control-label") }}
+          {% if form.username.errors %}
+            {{ form.username(class="form-control is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.username.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+          {% else %}
+             {{ form.username(class="form-control") }}
+          {% endif %}
+        </div>
+        <div class="form-group">
+        {{ form.email.label(class="form-control-label") }}
+        {% if form.email.errors %}
+        {{ form.email(class="form-control is-invalid") }}
+        <div class="invalid-feedback">
+            {% for error in form.email.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+         {{ form.email(class="form-control") }}
+        {% endif %}
+        </div>
+        <div class="form-group">
+          {{ form.firstname.label(class="form-control-label") }}
+           {% if form.firstname.errors %}
+            {{ form.firstname(class="form-control is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.firstname.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+          {% else %}
+             {{ form.firstname(class="form-control") }}
+          {% endif %}
+        </div>
+        <div class="form-group">
+          {{ form.lastname.label(class="form-control-label") }}
+           {% if form.lastname.errors %}
+            {{ form.lastname(class="form-control is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.lastname.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+          {% else %}
+             {{ form.lastname(class="form-control") }}
+          {% endif %}
+      </div>
+
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends "baseTemplate.html" %}
+{% block sideNav %}
+    {% include 'Admin/adminSideNav.html' %}
+{% endblock sideNav %}
+{% block content %}
+    <h1>Deadlines</h1>
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Select</th>
+            <th scope="col">Name</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+    <tbody>
+        {% for deadline in list %}
+            <tr>
+                <th scope="row"><button type="button" class="btn btn-info" ><a href="{{ url_for("updatedeadline", id=deadline.d_id) }}" style="color:white">Edit</a></button></th>
+                <td>{{ deadline.name }}</td>
+                <td>{{ deadline.deadline_date }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</table>
+    <button type="button" class="btn btn-primary"><a href="{{ url_for('createDeadline') }}" style="color:white;">Create Deadline</a></button>
+{% endblock content %}

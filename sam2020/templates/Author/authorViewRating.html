@@ -1,0 +1,31 @@
+{% extends "baseTemplate.html" %}
+{% block sideNav %}
+    {% include 'Author/authorSideNav.html' %}
+{% endblock sideNav %}
+{% block content %}
+    <h1>Rating</h1>
+    <div class="form-group">
+        {% if form.rating_score.errors %}
+            {{ form.rating_score(class="form-control is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.rating_score.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.rating_score(class="form-control") }}
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {% if form.rated_by.errors %}
+            {{ form.rated_by(class="form-control is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.rated_by.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.rated_by(class="form-control") }}
+        {% endif %}
+    </div>
+{% endblock content %}

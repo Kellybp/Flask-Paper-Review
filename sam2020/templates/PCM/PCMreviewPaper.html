@@ -1,0 +1,25 @@
+{% extends "baseTemplate.html" %}
+{% block sideNav %}
+    {% include 'PCM/PCMSideNav.html' %}
+{% endblock sideNav %}
+{% block content %}
+    <h1>Create Review</h1>
+    <p>Download the paper you want are reviewing and log your review here</p>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+          {{ form.review_text.label(class="form-control-label") }}
+          {% if form.review_text.errors %}
+            {{ form.review_text(class="form-control is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.review_text.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+          {% else %}
+             {{ form.review_text(class="form-control") }}
+          {% endif %}
+        </div>
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+{% endblock content %}

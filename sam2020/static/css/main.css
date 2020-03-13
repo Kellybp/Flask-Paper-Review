@@ -1,0 +1,165 @@
+/*********************Margins*******************/
+/*********************Colors*******************/
+.navbar {
+  height: 10%;
+  background: #455A64; }
+
+/*Some CSS loosely from https://www.w3schools.com/howto/howto_js_sidenav.asp */
+/*********************Side Nav*******************/
+.sideNav {
+  background: #607D8B;
+  top: 0;
+  height: 100%;
+  width: 35px;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  overflow-x: hidden;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  padding-top: 60px; }
+  .sideNav #sideNavMenu {
+    display: none; }
+  .sideNav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #FFFFFF;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s; }
+    .sideNav a:hover {
+      color: #f1f1f1; }
+
+.sideNavContainer {
+  margin-top: 15px; }
+
+.closebtn {
+  position: absolute;
+  top: 10%;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px; }
+
+body {
+  background: #FFFFFF; }
+
+#main {
+  -webkit-transition: margin-left .5s;
+  -o-transition: margin-left .5s;
+  transition: margin-left .5s;
+  padding: 16px;
+  margin-left: 30px;
+  margin-top: 5%; }
+
+@media screen and (max-height: 450px) {
+  .sideNav {
+    padding-top: 15px; }
+  .sideNav a {
+    font-size: 18px; } }
+
+#open {
+  color: white;
+  padding: 5px; }
+
+/*******************Table*************************/
+table {
+  font-family: arial, sans-serif;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+  -o-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+  -ms-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15); }
+  table tbody tr:hover {
+    box-shadow: 5px 6px 20px 10px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 5px 6px 20px 10px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 5px 6px 20px 10px rgba(0, 0, 0, 0.15);
+    -o-box-shadow: 5px 6px 20px 10px rgba(0, 0, 0, 0.15);
+    -ms-box-shadow: 5px 6px 20px 10px rgba(0, 0, 0, 0.15);
+    background-color: #ebebeb;
+    cursor: pointer;
+    height: 42.8px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 5px; }
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px; }
+
+tr:nth-child(even) {
+  background-color: #dddddd; }
+
+thead {
+  width: 100%;
+  box-shadow: 0px 1px 14px 4px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 0px 1px 14px 4px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 0px 1px 14px 4px rgba(0, 0, 0, 0.6);
+  -o-box-shadow: 0px 1px 14px 4px rgba(0, 0, 0, 0.6);
+  -ms-box-shadow: 0px 1px 14px 4px rgba(0, 0, 0, 0.6); }
+  thead td {
+    width: 30%; }
+
+tbody {
+  margin-top: 10%; }
+
+.col-sm, .col-sm12 {
+  padding: 5px; }
+
+/*************User Side Nav*****************/
+.overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2; }
+
+.opacity {
+  -webkit-animation: opac 0.8s;
+  animation: opac 0.8s; }
+
+.userNav {
+  position: fixed !important;
+  right: 0;
+  color: #000 !important;
+  background-color: #fff !important;
+  -webkit-animation: animateright 0.4s;
+  animation: animateright 0.4s;
+  height: 100%;
+  width: 200px;
+  background-color: #fff;
+  overflow: auto; }
+  .userNav a {
+    padding: 8px 16px;
+    width: 100%;
+    color: #000 !important;
+    text-decoration: none;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap; }
+    .userNav a:hover {
+      text-decoration: none;
+      color: #000 !important;
+      background-color: #ccc !important; }
+
+#sideImg {
+  background-color: #757575; }
+  #sideImg img {
+    margin-left: 40%; }
+
+/***************************Account*********************/
+#userType {
+  font-size: 20px;
+  font-weight: 200; }
